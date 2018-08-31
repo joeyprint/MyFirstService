@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @RequestMapping("/user")
-    public User getUser(@RequestParam(value="id") int id) {
+    public User getUser(@RequestParam("id") int id) {
         ArrayList<User> users = new ArrayList<>();
 
         users.add(0, new User(1, "Jo"));
