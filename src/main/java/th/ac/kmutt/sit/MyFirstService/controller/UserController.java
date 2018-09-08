@@ -1,9 +1,7 @@
 package th.ac.kmutt.sit.MyFirstService.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -11,36 +9,27 @@ import java.util.ArrayList;
 
 public class UserController {
 
-//    @RequestMapping("/user/1")
-//    public User getUser() {
-//        return new User(1, "Wasin");
-//    }
+    private ArrayList<User> users; //ADD Array User
+    public UserController() {
+        users = new ArrayList<User>();
 
-    @RequestMapping("/allusers")
-    public ArrayList<User> getAllUsers() {
-        ArrayList<User> users = new ArrayList<>();
-
-        users.add(0, new User(1, "Jo"));
-        users.add(1, new User(2, "Ming"));
-        users.add(2, new User(3, "Nan"));
-        users.add(3, new User(4, "Game"));
-        users.add(4, new User(5, "Boat"));
-
-        return users;
+        users.add(new User(1, "Wasin"));
+        users.add(new User(2, "Kunlakarn"));
+        users.add(new User(3, "Nathawat"));
+        users.add(new User(4, "Supawit"));
+        users.add(new User(5, "Putchamon"));
     }
 
-    @RequestMapping("/user")
-    public User getUser(@RequestParam("id") int id) {
-        ArrayList<User> users = new ArrayList<>();
+    //Get List User
+    @RequestMapping(value = "/allusers", method = RequestMethod.GET)
+    public ArrayList<User> getAllUsers() {
+        return this.users;
+    }
 
-        users.add(0, new User(1, "Jo"));
-        users.add(1, new User(2, "Ming"));
-        users.add(2, new User(3, "Nan"));
-        users.add(3, new User(4, "Game"));
-        users.add(4, new User(5, "Boat"));
-
-        User user = users.get(id-1);
-        return user;
+    //Get By ID
+    @GetMapping("/user/{id:[\\d]}") // [\\d] is Regular Expression (Decimal)
+    public User getUser(@PathVariable(name = "id") int id) {
+        return this.users.get(id - 1);
     }
 
 }

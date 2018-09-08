@@ -11,7 +11,7 @@ public class UserTest {
 
         UserController userController = new UserController();
         assertEquals(3, userController.getUser(3).getId());
-        assertEquals("Nan", userController.getUser(3).getName());
+        assertEquals("Nathawat", userController.getUser(3).getName());
 
     }
 
